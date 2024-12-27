@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @RestController
-@CrossOrigin(origins = "http://127.0.0.1:5500/")
+@CrossOrigin(origins = "*")
 public class LogController {
 
     private final LogRepository logRepository;
