@@ -7,9 +7,6 @@ const stopButton = document.getElementById("stop")
 const reloadButton = document.getElementById("reload");
 const messageArea = document.getElementById("msg");
 const workArea = document.querySelector('.work-area');
-if (!workArea) {
-    console.log("((")
-}
 
 let circle1, circle2;
 let direction1 = [1, 1];
@@ -263,7 +260,7 @@ async function sendAllEventsFromLocalStorageToServer() {
 async function sendEventFromLocalStorageToServer(eventData) {
     const eventTime = new Date().toISOString();
     try {
-        await fetch('http://localhost:8080/log-event', {
+        await fetch('https://web-programming-lab7.onrender.com/log-event', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -280,7 +277,7 @@ async function sendEventFromLocalStorageToServer(eventData) {
 
 async function waitForServerToFinishProcessing() {
     while (true) {
-        const response = await fetch('http://localhost:8080/check-processing-status');
+        const response = await fetch('https://web-programming-lab7.onrender.com/check-processing-status');
         const isProcessing = await response.json();
         
         if (!isProcessing) {
@@ -293,7 +290,7 @@ async function waitForServerToFinishProcessing() {
 
 async function loadEventsFromServer() {
     try {
-        const response = await fetch('http://localhost:8080/load-events', {
+        const response = await fetch('https://web-programming-lab7.onrender.com/load-events', {
             method: 'GET',
             headers: {
                 'Cache-Control': 'no-cache',
@@ -369,7 +366,7 @@ async function loadEventsFromServer() {
 
 async function clearEvents() {
     try {
-        await fetch('http://localhost:8080/clear-events', {
+        await fetch('https://web-programming-lab7.onrender.com/clear-events', {
             method: 'DELETE',
         });
     } catch (error) {
@@ -396,7 +393,7 @@ function processQueue() {
     isRequestInProgress = true;
     const eventData = eventQueue.shift();
 
-    fetch('http://localhost:8080/log-event', {
+    fetch('https://web-programming-lab7.onrender.com/log-event', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
