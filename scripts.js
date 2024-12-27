@@ -42,7 +42,6 @@ playButton.addEventListener('click', async () => {
     animArea.innerHTML = '';
     animArea.appendChild(createCircle('circle1', 10, 'yellow'));
     animArea.appendChild(createCircle('circle2', 25, 'red'));
-    console.log("button works")
 });
 
 closeButton.addEventListener('click', () => {
@@ -271,7 +270,7 @@ async function sendEventFromLocalStorageToServer(eventData) {
             })
         });
     } catch (error) {
-        console.error('Error sending event to server:', error);
+        console.error('Помилка при відправці подій на сервер:', error);
     }
 }
 
@@ -360,7 +359,7 @@ async function loadEventsFromServer() {
         table.appendChild(tbody);
         listArea.appendChild(table);
     } catch (error) {
-        console.error('Error loading events from server:', error);
+        console.error('Помилка при завантаженні подій:', error);
     }
 }
 
@@ -370,7 +369,7 @@ async function clearEvents() {
             method: 'DELETE',
         });
     } catch (error) {
-        console.error('Error clearing events from the database:', error);
+        console.error('Помилка при очищенні бази даних:', error);
     }
 }
 
@@ -402,9 +401,6 @@ function processQueue() {
             event: eventData.event,
             time: new Date().toISOString()
         })
-    })
-    .then(() => {
-        console.log("Подія успішно надіслана на сервер.");
     })
     .catch(error => {
         console.error("Помилка при відправленні події:", error);
